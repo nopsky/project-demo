@@ -5,7 +5,9 @@
  */
 package wrap
 
-import perrors "github.com/pkg/errors"
+import (
+	"github.com/nopsky/project-demo/pkg/errors"
+)
 
 type response struct {
 	Code    int         `json:"code"`
@@ -24,10 +26,21 @@ func Success(data interface{}) interface{} {
 }
 
 func Fail(err error) interface{} {
+
+	err = errors.Cause(err)
+
+	code := -1
+
+	e, ok := err.(*errors.Error)
+
+	if ok {
+		code = e.Code
+	}
+
 	return response{
-		Code:    0,
+		Code:    code,
 		Stat:    1,
-		Message: perrors.Cause(err).Error(),
-		Data:    perrors.WithStack(err).Error(),
+		Message: err.Error(),
+		Data:    nil,
 	}
 }

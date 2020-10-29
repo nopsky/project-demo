@@ -70,10 +70,14 @@ func New() (*Manager, error) {
 	return dm, nil
 }
 
-func NewWithOptions(opts *Options) (*Manager, error) {
+func NewWithOptions(optFn ...OptionFn) (*Manager, error) {
 	dm := &Manager{
-		opts: opts,
+		opts: newOptions(),
 		dbs:  make(map[string]*DB),
+	}
+
+	for _, fn := range optFn {
+		fn(dm.opts)
 	}
 
 	logger.Debug(dm.opts)
