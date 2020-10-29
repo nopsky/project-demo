@@ -14,10 +14,14 @@ type Error struct {
 }
 
 func New(code int, message string) Error {
-	return Error{
+	e := Error{
 		Code:    code,
 		Message: message,
 	}
+
+	c.add(e)
+
+	return e
 }
 
 func (e Error) Error() string {
@@ -33,8 +37,8 @@ func Wrap(err error, message string) error {
 	return perrors.Wrap(err, message)
 }
 
-func Wrapf(err error, formart string, args ...interface{}) error {
-	return perrors.Wrapf(err, formart, args...)
+func Wrapf(err error, format string, args ...interface{}) error {
+	return perrors.Wrapf(err, format, args...)
 }
 
 func Cause(err error) error {
