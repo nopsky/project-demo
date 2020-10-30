@@ -10,6 +10,7 @@ import (
 
 	"github.com/nopsky/project-demo/internal/user"
 	"github.com/nopsky/project-demo/internal/user/entity"
+	"github.com/nopsky/project-demo/internal/user/repository/models"
 	"github.com/nopsky/project-demo/pkg/ecode"
 	"github.com/nopsky/project-demo/pkg/errors"
 	"github.com/nopsky/project-demo/pkg/orm"
@@ -30,17 +31,44 @@ func (ur userRepo) GetUserByUsername(ctx context.Context, username string) (user
 		return nil, errors.WithError(err, ecode.DBNewOrmError)
 	}
 
-	var userModel string
+	var userModel models.Users
 
-	result := db.Where("username = ?", username).First(&userModel)
+	err = db.Where("username = ?", username).First(&userModel).Error
 
-	if result.Error != nil {
-		return nil, errors.WithError(result.Error, ecode.GetUserByUsernameError)
+	if err != nil {
+		if !orm.IsNotFoundError(err) {
+			return nil, errors.WithError(err, ecode.GetUserByUsernameError)
+		}
+		return nil, nil
+	}
+
+	userEntity = &entity.UserEntity{
+		ID:        userModel.ID,
+		CompanyID: userModel.CompanyID,
+		Username:  userModel.Username,
+		Password:  userModel.Passsword,
+		Nickname:  userModel.Nickname,
+		Role:      userModel.Role,
 	}
 
 	return userEntity, nil
 }
 
-func (userRepo) Save(ctx context.Context, user *entity.UserEntity) error {
+func (ur userRepo) Save(ctx context.Context, user *entity.UserEntity) error {
+	var userModel models.Users
+
+	db, err := ur.db.NewOrm(ctx)
+
+	if err != nil {
+		return errors.WithError(err, ecode.DBNewOrmError)
+	}
+
+	userModel.ID = user.ID
+	userModel.Username = user.Username
+
+	if err := db.Save(userModel).Error; err != nil {
+		return errors.WithError(err, ecode.SaveUserInfoError)
+	}
+
 	return nil
 }

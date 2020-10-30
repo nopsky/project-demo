@@ -7,10 +7,10 @@ package service
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/nopsky/project-demo/internal/user"
 	"github.com/nopsky/project-demo/internal/user/entity"
+	"github.com/nopsky/project-demo/pkg/ecode"
 	"github.com/nopsky/project-demo/pkg/util/id"
 	perrors "github.com/pkg/errors"
 )
@@ -30,7 +30,7 @@ func (u *userService) RegisterUser(ctx context.Context, user *entity.UserEntity)
 	}
 
 	if item != nil {
-		return nil, fmt.Errorf("用户名 `%s` 已存在", user.Username)
+		return nil, ecode.UserIsExists
 	}
 
 	user.ID = id.New()

@@ -17,7 +17,7 @@ func newCollection() *collection {
 	return &collection{list: make(map[int]string)}
 }
 
-func (c *collection) add(e Error) {
+func (c *collection) add(e *Error) {
 	if _, ok := c.list[e.Code]; ok {
 		panic(fmt.Errorf("错误编码:%d 已经存在", e.Code))
 	}

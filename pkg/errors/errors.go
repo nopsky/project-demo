@@ -8,13 +8,13 @@ package errors
 import perrors "github.com/pkg/errors"
 
 type Error struct {
-	Code    int
-	Message string
-	err     error
+	Code     int
+	Message  string
+	otherErr error
 }
 
-func New(code int, message string) Error {
-	e := Error{
+func New(code int, message string) *Error {
+	e := &Error{
 		Code:    code,
 		Message: message,
 	}
@@ -28,8 +28,12 @@ func (e Error) Error() string {
 	return e.Message
 }
 
-func WithError(err error, e Error) Error {
-	e.err = err
+func (e Error) OtherError() error {
+	return e.otherErr
+}
+
+func WithError(err error, e *Error) *Error {
+	e.otherErr = err
 	return e
 }
 
@@ -47,4 +51,8 @@ func Cause(err error) error {
 
 func Is(err error, target error) bool {
 	return perrors.Is(err, target)
+}
+
+func As(err error, target interface{}) bool {
+	return perrors.As(err, target)
 }

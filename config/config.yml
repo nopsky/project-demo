@@ -14,17 +14,7 @@ grpc:
 
 mysql:
   "default":
-    dns:  "root:123456@tcp(127.0.0.1:3306)/yundou_v3?charset=utf8&parseTime=true"
+    dns:  "root:123456@tcp(127.0.0.1:3306)/demo?charset=utf8&parseTime=true"
     maxIdleConns: 5
     maxOpenConns: 100
     mode: "debug"
-  "tax":
-    dns:  "root:123456@tcp(127.0.0.1:3306)/tax?charset=utf8&parseTime=true"
-    maxIdleConns: 5
-    maxOpenConns: 100
-    mode: "debug"
-
-redis:
-  host: "127.0.0.1"
-  port: "6379"
-  db: 0
