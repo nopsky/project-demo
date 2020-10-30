@@ -30,23 +30,23 @@ func main() {
 	hs, err := http.New()
 
 	if err != nil {
-		log.Fatal("#1", err)
+		log.Fatalf("%+v", err)
 	}
 
 	if err != nil {
-		log.Fatal("#2", err)
+		log.Fatalf("%+v", err)
 	}
 
 	rs, err := rpc.New()
 
 	if err != nil {
-		log.Fatal("#3", err)
+		log.Fatalf("%+v", err)
 	}
 
 	ucs, err := di.MakeUseCase()
 
 	if err != nil {
-		log.Fatal("#4", err)
+		log.Fatalf("%+v", err)
 	}
 
 	setProvider(hs, rs, ucs)
@@ -54,7 +54,7 @@ func main() {
 	a, err := app.New(app.HttpServer(hs), app.RpcServer(rs))
 
 	if err != nil {
-		log.Fatal("#5", err)
+		log.Fatalf("%+v", err)
 	}
 
 	if err := a.Start(); err != nil {
