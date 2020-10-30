@@ -9,7 +9,7 @@ import (
 	"context"
 	"fmt"
 
-	"gitlab.jiayunhui.com/service/api/pkg/util/id"
+	"github.com/nopsky/project-demo/pkg/util/id"
 )
 
 //自定义事务ID

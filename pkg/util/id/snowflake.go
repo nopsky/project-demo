@@ -9,7 +9,7 @@ import (
 	"os"
 
 	"github.com/bwmarrin/snowflake"
-	"gitlab.jiayunhui.com/service/api/pkg/logger"
+	"github.com/nopsky/project-demo/pkg/logger"
 )
 
 var node *snowflake.Node

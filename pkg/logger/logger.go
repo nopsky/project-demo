@@ -6,7 +6,7 @@
 package logger
 
 import (
-	"gitlab.jiayunhui.com/service/api/pkg/logger/zap"
+	"github.com/nopsky/project-demo/pkg/logger/zap"
 )
 
 type Logger interface {

@@ -11,8 +11,8 @@ import (
 	"fmt"
 
 	"github.com/nopsky/project-demo/pkg/config"
+	"github.com/nopsky/project-demo/pkg/logger"
 	perrors "github.com/pkg/errors"
-	"gitlab.jiayunhui.com/service/api/pkg/logger"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/schema"

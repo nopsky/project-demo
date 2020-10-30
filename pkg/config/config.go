@@ -9,8 +9,8 @@ import (
 	"bytes"
 	"io/ioutil"
 
+	"github.com/nopsky/project-demo/pkg/logger"
 	"github.com/spf13/viper"
-	"gitlab.jiayunhui.com/service/api/pkg/logger"
 )
 
 var conf *viper.Viper

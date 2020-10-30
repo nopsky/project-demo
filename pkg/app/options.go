@@ -6,9 +6,9 @@
 package app
 
 import (
+	"github.com/nopsky/project-demo/pkg/transports"
 	"github.com/nopsky/project-demo/pkg/transports/http"
 	"github.com/nopsky/project-demo/pkg/transports/rpc"
-	"gitlab.jiayunhui.com/service/api/pkg/transports"
 )
 
 type Options struct {

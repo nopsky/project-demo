@@ -12,7 +12,7 @@ import (
 	"net"
 
 	"github.com/nopsky/project-demo/pkg/config"
-	"gitlab.jiayunhui.com/service/api/pkg/logger"
+	"github.com/nopsky/project-demo/pkg/logger"
 	"google.golang.org/grpc"
 )
 

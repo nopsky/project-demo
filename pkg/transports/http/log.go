@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"gitlab.jiayunhui.com/service/api/pkg/logger"
+	"github.com/nopsky/project-demo/pkg/logger"
 )
 
 func ginLogger() gin.HandlerFunc {
