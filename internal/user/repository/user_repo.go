@@ -8,9 +8,9 @@ package repository
 import (
 	"context"
 
-	"github.com/nopsky/project-demo/ecode"
 	"github.com/nopsky/project-demo/internal/user"
 	"github.com/nopsky/project-demo/internal/user/entity"
+	"github.com/nopsky/project-demo/pkg/ecode"
 	"github.com/nopsky/project-demo/pkg/errors"
 	"github.com/nopsky/project-demo/pkg/orm"
 )
