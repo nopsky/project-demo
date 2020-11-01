@@ -11,7 +11,6 @@ import (
 	"github.com/nopsky/project-demo/internal/user"
 	"github.com/nopsky/project-demo/internal/user/entity"
 	"github.com/nopsky/project-demo/pkg/ecode"
-	"github.com/nopsky/project-demo/pkg/util/id"
 	perrors "github.com/pkg/errors"
 )
 
@@ -32,8 +31,6 @@ func (u *userService) RegisterUser(ctx context.Context, user *entity.UserEntity)
 	if item != nil {
 		return nil, ecode.UserIsExists
 	}
-
-	user.ID = id.New()
 
 	if err = u.userRepo.Save(ctx, user); err != nil {
 		return nil, perrors.Wrap(err, "注册用户失败")

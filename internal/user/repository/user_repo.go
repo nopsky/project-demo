@@ -46,7 +46,6 @@ func (ur userRepo) GetUserByUsername(ctx context.Context, username string) (user
 		ID:        userModel.ID,
 		CompanyID: userModel.CompanyID,
 		Username:  userModel.Username,
-		Password:  userModel.Passsword,
 		Nickname:  userModel.Nickname,
 		Role:      userModel.Role,
 	}

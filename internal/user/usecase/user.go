@@ -10,6 +10,7 @@ import (
 
 	"github.com/nopsky/project-demo/internal/user"
 	"github.com/nopsky/project-demo/internal/user/entity"
+	"github.com/nopsky/project-demo/pkg/util/id"
 	pb "github.com/nopsky/project-demo/proto/user"
 	perrors "github.com/pkg/errors"
 )
@@ -24,7 +25,7 @@ func NewUserUseCase(us user.IUserService) user.IUserUseCase {
 
 func (uuc userUseCase) RegisterUser(ctx context.Context, req *pb.RegisterUserRequest) (resp *pb.RegisterUserResponse, err error) {
 	user := &entity.UserEntity{
-		ID:        0,
+		ID:        id.New(),
 		CompanyID: 0,
 		Username:  req.Username,
 		Password:  req.Password,

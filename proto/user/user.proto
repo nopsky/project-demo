@@ -2,9 +2,12 @@ syntax = "proto3";
 
 option go_package = ".;user";
 
+import "validator.proto";
+
 message RegisterUserRequest {
   string username = 1;
   string password = 2;
+  int64  companyId = 3 [(validator.field) = {int_gt:0}];
 }
 
 message RegisterUserResponse {
